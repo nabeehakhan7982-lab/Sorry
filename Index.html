@@ -16,6 +16,7 @@
       margin: 0;
       color: #333;
       text-align: center;
+      transition: all 0.5s ease;
     }
     .card {
       background: white;
@@ -24,33 +25,93 @@
       box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
       max-width: 320px;
       width: 85%;
+      animation: fadeIn 1s ease;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
     }
     h1 {
       font-size: 1.5rem;
       margin-bottom: 15px;
-      letter-spacing: 0.5px;
     }
     p {
       font-size: 1rem;
-      margin: 10px 0 20px;
+      margin: 10px 0 25px;
       line-height: 1.5;
+    }
+    .buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+    button {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 30px;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    .yes {
+      background-color: #90ee90;
+    }
+    .no {
+      background-color: #ffb6b6;
+    }
+    button:hover {
+      transform: scale(1.05);
+      opacity: 0.9;
     }
     .signature {
       font-style: italic;
       color: #888;
       margin-top: 20px;
     }
-    .heart {
-      color: #e63946;
-      font-size: 1.4rem;
-    }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Sorry, Fatima <span class="heart">❤️</span></h1>
-    <p>Really sorry for testing you.<br />You mean so much to me.</p>
-
+    <h1>Sorry, Fatima ❤️</h1>
+    <p id="message">Really sorry for testing you.<br>Will you forgive me?</p>
+    <div class="buttons">
+      <button class="yes" onclick="sayYes()">Yes</button>
+      <button class="no" onclick="sayNo()">No</button>
+    </div>
+    <div class="signature">– Nabeeha</div>
   </div>
+
+  <script>
+    const messages = [
+      "Think again pls 🥺",
+      "Pls I'm really sorry 😭",
+      "Come on... don't be mad 🥹",
+      "Pretty pls with a heart 💖",
+      "Okay now you're just teasing me 😅",
+      "You know you wanna say yes 😘",
+      "Fine... but I'm not giving up 😤",
+      "Still no?? 😩",
+      "Fatimaaaa 😭 forgive me already!",
+      "Last chance... pretty pls 🥺"
+    ];
+
+    let noCount = 0;
+
+    function sayNo() {
+      const msg = document.getElementById("message");
+      if (noCount < messages.length) {
+        msg.innerHTML = messages[noCount];
+        noCount++;
+      } else {
+        msg.innerHTML = "Okay... I'll wait forever 😔";
+      }
+    }
+
+    function sayYes() {
+      const msg = document.getElementById("message");
+      msg.innerHTML = "YAY! FINALLY THANK YOU LYY 💖💫";
+      document.querySelector(".buttons").style.display = "none";
+    }
+  </script>
 </body>
 </html>
